@@ -10,7 +10,7 @@ namespace WebApiEFCoreService.Mapping
     {
         public ServiceProfile()
         {
-            this.CreateMap<AccountDataModel, AccountDto>()
+            this.CreateMap<AccountCondition, AccountDto>()
                 .ForMember(x => x.CreateDate, y => y.MapFrom(z => z.CreateDate.ToString("yyyy/MM/dd")))
                 .ForMember(x => x.ModifyDate, y => y.MapFrom(z => z.ModifyDate.ToString("yyyy/MM/dd")));
 

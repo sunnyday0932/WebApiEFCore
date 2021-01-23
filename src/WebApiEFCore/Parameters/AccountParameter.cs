@@ -1,6 +1,6 @@
-﻿namespace WebApiEFCoreService.InfoModels
+﻿namespace WebApiEFCore.Parameters
 {
-    public class AccountInfoModel
+    public class AccountParameter
     {
         public int Idx { get; set; }
 

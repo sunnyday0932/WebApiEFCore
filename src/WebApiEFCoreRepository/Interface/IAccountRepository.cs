@@ -11,13 +11,13 @@ namespace WebApiEFCoreRepository.Interface
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public AccountDataModel GetAccount(string account);
+        public AccountCondition GetAccount(string account);
 
         /// <summary>
         /// 取得帳號列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<AccountDataModel> GetAccountList();
+        public IEnumerable<AccountCondition> GetAccountList();
 
         /// <summary>
         /// 新增帳號

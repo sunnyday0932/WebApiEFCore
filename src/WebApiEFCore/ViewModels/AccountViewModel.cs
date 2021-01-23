@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace WebApiEFCoreRepository.Conditions
+﻿namespace WebApiEFCore.ViewModles
 {
-    public class AccountCondition
+    /// <summary>
+    /// 帳號
+    /// </summary>
+    public class AccountViewModel
     {
         /// <summary>
         /// 帳號
@@ -10,12 +11,7 @@ namespace WebApiEFCoreRepository.Conditions
         public string Account { get; set; }
 
         /// <summary>
-        /// 密碼
-        /// </summary>
-        public string Password { get; set; }
-
-        /// <summary>
-        /// 電話號碼
+        /// 電話
         /// </summary>
         public string Phone { get; set; }
 
@@ -25,17 +21,17 @@ namespace WebApiEFCoreRepository.Conditions
         public string Email { get; set; }
 
         /// <summary>
-        /// 新增日期
+        /// 建立日期
         /// </summary>
-        public DateTime CreateDate { get; set; }
+        public string CreateDate { get; set; }
 
         /// <summary>
         /// 異動日期
         /// </summary>
-        public DateTime ModifyDate { get; set; }
+        public string ModifyDate { get; set; }
 
         /// <summary>
-        /// 異動者
+        /// 異動人員
         /// </summary>
         public string ModifyUser { get; set; }
     }

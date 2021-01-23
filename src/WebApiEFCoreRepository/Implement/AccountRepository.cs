@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace WebApiEFCoreRepository.Implement
         /// <returns></returns>
         public bool ForgetPassword(AccountCondition condition)
         {
-            var data = this._accountContext.Account.Find(condition.Account);
+            var data = this._accountContext.Users.Find(condition.Account);
             this._accountContext.Entry(data).CurrentValues.SetValues(condition);
             var result = this._accountContext.SaveChanges();
 
@@ -54,9 +55,9 @@ namespace WebApiEFCoreRepository.Implement
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public AccountDataModel GetAccount(string account)
+        public AccountCondition GetAccount(string account)
         {
-            var result = this._accountContext.Account.Find(account);
+            var result = this._accountContext.Users.Find(account);
 
             return result;
         }
@@ -65,9 +66,9 @@ namespace WebApiEFCoreRepository.Implement
         /// 取得帳號列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<AccountDataModel> GetAccountList()
+        public IEnumerable<AccountCondition> GetAccountList()
         {
-            var result = this._accountContext.Account.ToList();
+            var result = this._accountContext.Users.ToList();
 
             return result;
         }
@@ -79,7 +80,7 @@ namespace WebApiEFCoreRepository.Implement
         /// <returns></returns>
         public bool RemoveAccount(string account)
         {
-            var data = this._accountContext.Account.Find(account);
+            var data = this._accountContext.Users.Find(account);
             this._accountContext.Remove(data);
             var result = this._accountContext.SaveChanges();
 
@@ -93,9 +94,13 @@ namespace WebApiEFCoreRepository.Implement
         /// <returns></returns>
         public bool UpdateAccount(AccountCondition condition)
         {
-            this._accountContext.Update(condition);
-            var result = this._accountContext.SaveChanges();
+            var data = this._accountContext.Users.Find(condition.Account);
+            data.Email = condition.Email;
+            data.ModifyDate = condition.ModifyDate;
+            data.ModifyUser = condition.ModifyUser;
+            data.Phone = condition.Phone;
 
+            var result = this._accountContext.SaveChanges();
             return result > 0;
         }
     }
