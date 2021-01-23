@@ -1,37 +1,32 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiEFCoreRepository.DataModels;
 
 #nullable disable
 
-namespace WebApiEFCoreRepository.Models
+namespace WebApiEFCoreRepository.DBContext
 {
-    public partial class UsersContext : DbContext
+    public partial class AccountContext : DbContext
     {
-        public UsersContext()
+        public AccountContext()
         {
         }
 
-        public UsersContext(DbContextOptions<UsersContext> options)
+        public AccountContext(DbContextOptions<AccountContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<AccountDataModel> Account { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source=localhost;Database=Northwind;Trusted_Connection=True;");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Chinese_Taiwan_Stroke_CI_AS");
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<AccountDataModel>(entity =>
             {
                 entity.HasKey(e => e.Account)
                     .HasName("PK__Users__B0C3AC4785F7CBD0");

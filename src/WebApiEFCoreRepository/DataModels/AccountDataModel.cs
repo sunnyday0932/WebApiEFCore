@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 #nullable disable
 
-namespace WebApiEFCoreRepository.Models
+namespace WebApiEFCoreRepository.DataModels
 {
-    public partial class User
+    public partial class AccountDataModel
     {
         public int Idx { get; set; }
         public string Account { get; set; }
