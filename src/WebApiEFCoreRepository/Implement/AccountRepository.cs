@@ -94,11 +94,15 @@ namespace WebApiEFCoreRepository.Implement
         /// <returns></returns>
         public bool UpdateAccount(AccountCondition condition)
         {
-            var data = this._accountContext.Users.Find(condition.Account);
+            var data = this._accountContext.Users.FirstOrDefault(
+                rows => rows.Account == condition.Account);
+
             data.Email = condition.Email;
             data.ModifyDate = condition.ModifyDate;
             data.ModifyUser = condition.ModifyUser;
             data.Phone = condition.Phone;
+            this._accountContext.Update(data)
+                .Property(rows => rows.Idx).IsModified = false;
 
             var result = this._accountContext.SaveChanges();
             return result > 0;
